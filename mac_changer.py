@@ -3,7 +3,7 @@
 import subprocess as sp
 import optparse as op
 
-//For getting the arguments
+#For getting the arguments
 def arguments():
     parser = op.OptionParser()
     parser.add_option("-i", "--interface", dest="interface", help="Interface to change MAC address")
@@ -15,14 +15,14 @@ def arguments():
          parser.error("[-] Please specify a new mac, use --help for more info.")
     return options
 
-//Function to change the MAC address
+#Function to change the MAC address
 def mac_change(interface,mac):
     print("[+] Changing MAC address for " + interface + " to " + mac)
     sp.call(["sudo","ifconfig", interface, "down"])
     sp.call(["sudo","ifconfig", interface, "hw", "ether", mac])
     sp.call(["sudo", "ifconfig", interface, "up"])
 
-//Function calls
+#Function calls
 options = arguments()
 mac_change(options.interface,options.mac)
 
